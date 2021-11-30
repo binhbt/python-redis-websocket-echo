@@ -122,12 +122,11 @@ def echo(ws, client_id):
         # ws.send(msg)
         #Receive message
         msg = get_socket_message_and_send(ws)
-        if not msg:
-            #Send message
-            msg = get_redis_message()
-            if msg:
-                str_mess = str(msg)+'-'+client_id
-                ws.send(str_mess.encode('utf-8'))
+        #Send message
+        msg = get_redis_message()
+        if msg:
+            str_mess = str(msg)+'-'+client_id
+            ws.send(str_mess.encode('utf-8'))
 
 def get_socket_message_and_send(ws):
     msg = ws.receive()
